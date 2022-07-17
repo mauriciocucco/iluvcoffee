@@ -15,27 +15,20 @@ import {
 import { CoffeesService } from './coffees.service';
 import { CreateCoffeeDto } from './dto/create-coffee.dto';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto';
+import { PaginationQueryDto } from '../common/dto/pagination-query.dto';
 
 @Controller('coffees')
 export class CoffeesController {
   constructor(private readonly coffeesService: CoffeesService) {}
 
   @Get()
-  index(@Query() query: any) {
-    // const { page } = query;
-    return this.coffeesService.getCoffees();
+  index(@Query() paginationQuery: PaginationQueryDto) {
+    return this.coffeesService.getCoffees(paginationQuery);
   }
 
   @Get(':id')
   show(@Param('id') id: number) {
-    const coffee = this.coffeesService.getCoffee(id);
-
-    if (!coffee) {
-      //   throw new HttpException('Coffee Not found', HttpStatus.NOT_FOUND);
-      throw new NotFoundException('Coffee Not found');
-    }
-
-    return coffee;
+    return this.coffeesService.getCoffee(id);
   }
 
   @Post()

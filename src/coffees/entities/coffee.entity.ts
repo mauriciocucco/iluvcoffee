@@ -1,13 +1,27 @@
+import {
+  Column,
+  Entity,
+  JoinTable,
+  ManyToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { Flavor } from './flavor.entity';
+
+@Entity()
 export class Coffee {
+  @PrimaryGeneratedColumn()
   id: number;
+
+  @Column()
   name: string;
+
+  @Column({ nullable: true })
   description: string;
+
+  @Column()
   price: number;
 
-  constructor(id: number, name: string, description: string, price: number) {
-    this.id = id;
-    this.name = name;
-    this.description = description;
-    this.price = price;
-  }
+  @JoinTable()
+  @ManyToMany(() => Flavor, (flavor) => flavor.coffees, { cascade: true })
+  flavors: Flavor[];
 }
