@@ -1,9 +1,9 @@
-import { DataSource } from 'typeorm';
-import { basicConfig } from './ormconfig';
+import { DataSource, DataSourceOptions } from 'typeorm';
+import typeOrmConfig from './typeorm.config';
+import * as dotenv from 'dotenv';
 
-const dataSource = new DataSource({
-  ...basicConfig,
-  migrations: ['src/migrations/*.ts'],
-});
+dotenv.config(); // very very important!!
+
+const dataSource = new DataSource(typeOrmConfig() as DataSourceOptions);
 
 export default dataSource;

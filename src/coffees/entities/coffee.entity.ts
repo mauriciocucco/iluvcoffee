@@ -16,7 +16,7 @@ export class Coffee {
 
   @Index()
   @Column()
-  name: string;
+  title: string;
 
   @Column({ nullable: true })
   description: string;
