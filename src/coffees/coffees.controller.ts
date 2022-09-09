@@ -20,11 +20,15 @@ import { PaginationQueryDto } from '../common/dto/pagination-query.dto';
 import { Public } from 'src/common/decorators/public.decorator';
 import { ParseIntPipe } from '../common/pipes/parse-int.pipe';
 import { Protocol } from 'src/common/decorators/protocol.decorator';
+import { ApiResponse, ApiForbiddenResponse, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('coffees')
 @Controller('coffees')
 export class CoffeesController {
   constructor(private readonly coffeesService: CoffeesService) {}
 
+  // @ApiResponse({ status: 403, description: 'Forbidden.' })
+  @ApiForbiddenResponse({ description: 'Forbidden.' })
   // @SetMetadata('isPublic', true)
   @Public() // is better to use custom decorators
   @Get()
