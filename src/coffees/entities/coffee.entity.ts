@@ -16,13 +16,10 @@ export class Coffee {
 
   @Index()
   @Column()
-  title: string;
+  name: string;
 
   @Column({ nullable: true })
   description: string;
-
-  @Column({ nullable: true })
-  brand: string;
 
   @Column()
   price: number;

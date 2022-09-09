@@ -6,10 +6,9 @@ const typeOrmConfig = () => ({
   username: process.env.DB_USER || '',
   password: process.env.DB_PASSWORD || '',
   entities: [__dirname + '/../**/entities/*.entity.{ts,js}'],
-  synchronize: process.env.DB_SYNCHRONIZE || false,
   /* Note : it is unsafe to use synchronize: true for schema synchronization
     on production once you get data in your database. */
-  // synchronize: true,
+  synchronize: process.env.DB_SYNCHRONIZE || false,
   migrations: [__dirname + 'src/migrations/*.ts'],
 });
 
