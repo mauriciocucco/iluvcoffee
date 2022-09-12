@@ -1,6 +1,6 @@
 import { Injectable, Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { CustomEvent } from 'src/events/entities/custom-event.entity';
+import { CustomEvent } from '../events/entities/custom-event.entity';
 import { COFFEE_BRANDS } from './coffees.constants';
 import { CoffeesController } from './coffees.controller';
 import { CoffeesService } from './coffees.service';
