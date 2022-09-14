@@ -12,7 +12,7 @@ async function bootstrap() {
   // I can add useGlobal methods if the class within doesn't use dependecy injection
   app.useGlobalPipes(
     new ValidationPipe({
-      whitelist: true,
+      whitelist: true, // removes extra properties from the request body
       transform: true,
       transformOptions: {
         enableImplicitConversion: true,
@@ -41,4 +41,5 @@ async function bootstrap() {
 
   await app.listen(3000);
 }
+
 bootstrap();

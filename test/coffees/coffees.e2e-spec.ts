@@ -2,7 +2,7 @@ import { HttpStatus, INestApplication, ValidationPipe } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CoffeesModule } from '../../src/coffees/coffees.module';
-import { CreateCoffeeDto } from '../../src/coffees/dto/create-coffee.dto';
+import { CreateCoffeeDto } from '../../src/coffees/dtos/create-coffee.dto';
 import * as request from 'supertest';
 
 describe('[Feature] Coffees - /coffees', () => {

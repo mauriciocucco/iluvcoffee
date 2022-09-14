@@ -14,9 +14,9 @@ import {
   SetMetadata,
 } from '@nestjs/common';
 import { CoffeesService } from './coffees.service';
-import { CreateCoffeeDto } from './dto/create-coffee.dto';
-import { UpdateCoffeeDto } from './dto/update-coffee.dto';
-import { PaginationQueryDto } from '../common/dto/pagination-query.dto';
+import { CreateCoffeeDto } from './dtos/create-coffee.dto';
+import { UpdateCoffeeDto } from './dtos/update-coffee.dto';
+import { PaginationQueryDto } from '../common/dtos/pagination-query.dto';
 import { Public } from '../common/decorators/public.decorator';
 import { ParseIntPipe } from '../common/pipes/parse-int.pipe';
 import { Protocol } from '../common/decorators/protocol.decorator';

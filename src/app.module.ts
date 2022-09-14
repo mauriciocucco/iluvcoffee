@@ -24,7 +24,7 @@ import { CommonModule } from './common/common.module';
       },
     }),
     CoffeeRatingModule,
-    DatabaseModule,
+    // DatabaseModule, // this is a dinamic module example
     CommonModule,
   ],
   controllers: [AppController],
