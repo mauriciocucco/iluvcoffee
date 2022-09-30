@@ -13,9 +13,10 @@ async function bootstrap() {
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true, // removes extra properties from the request body
-      transform: true,
+      // forbidNonWhiteListed: true, // returns an errors if there is an extra property
+      transform: true, //transform the controllers inputs to class instances or primitives
       transformOptions: {
-        enableImplicitConversion: true,
+        enableImplicitConversion: true, // transform the properties according to a class validations
       },
     }),
   );
