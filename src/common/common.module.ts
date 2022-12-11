@@ -6,11 +6,11 @@ import {
 } from '@nestjs/common';
 import { APP_GUARD } from '@nestjs/core';
 import { ApiKeyGuard } from './guards/api-key.guard';
-import { ConfigModule } from '@nestjs/config';
+// import { ConfigModule } from '@nestjs/config';
 import { LoginMiddleware } from './middlewares/login.middleware';
 
 @Module({
-  imports: [ConfigModule],
+  // imports: [ConfigModule],
   providers: [
     {
       provide: APP_GUARD,

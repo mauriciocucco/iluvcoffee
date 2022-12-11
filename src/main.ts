@@ -6,9 +6,12 @@ import { WrapResponseInterceptor } from './common/interceptors/wrap-response.int
 // import { ApiKeyGuard } from './common/guards/api-key.guard';
 import { TimeoutInterceptor } from './common/interceptors/timeout.interceptor';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { ConfigService } from '@nestjs/config';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  const configService = app.get(ConfigService);
+
   // I can add useGlobal methods if the class within doesn't use dependecy injection
   app.useGlobalPipes(
     new ValidationPipe({
@@ -30,6 +33,7 @@ async function bootstrap() {
     new TimeoutInterceptor(),
   );
 
+  // SWAGGER
   const options = new DocumentBuilder()
     .setTitle('Iluvcoffe')
     .setDescription('Coffee application')
@@ -40,7 +44,8 @@ async function bootstrap() {
 
   SwaggerModule.setup('api', app, document);
 
-  await app.listen(3000);
+  // PORT
+  await app.listen(configService.get('PORT'));
 }
 
 bootstrap();

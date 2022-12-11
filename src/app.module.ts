@@ -13,9 +13,10 @@ import { CommonModule } from './common/common.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
+      // envFilePath: `${process.env.NODE_ENV}.env`,
+      isGlobal: true,
       load: [appConfig],
     }),
-    CoffeesModule,
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
@@ -23,6 +24,7 @@ import { CommonModule } from './common/common.module';
         return configService.get<DataSourceOptions>('database');
       },
     }),
+    CoffeesModule,
     CoffeeRatingModule,
     // DatabaseModule, // this is a dinamic module example
     CommonModule,
