@@ -83,6 +83,10 @@ export class CoffeesService {
   async deleteCoffee(id: number): Promise<Coffee> {
     const coffee = await this.getCoffee(id);
 
+    if (!coffee) {
+      throw new NotFoundException('Coffee not found');
+    }
+
     return this.coffeeRepository.remove(coffee);
   }
 
