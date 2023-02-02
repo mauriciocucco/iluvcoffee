@@ -25,7 +25,7 @@
     "pretest:e2e": "docker-compose up -d test-db",
     "test:e2e": "cross-env NODE_ENV=testing jest --config ./test/jest-e2e.json --maxWorkers=1 --detectOpenHandles",
     "posttest:e2e": "docker-compose stop test-db && docker-compose rm -f test-db",
-    "typeorm": "npx typeorm-ts-node-esm"
+    "typeorm": "cross-env NODE_ENV=production npx typeorm-ts-node-esm"
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",
