@@ -11,7 +11,7 @@ const typeOrmConfig = () => ({
   synchronize: process.env.DB_SYNCHRONIZE || false,
   // autoLoadEntities: true,
   migrationsTableName: 'migration',
-  migrations: [__dirname + 'src/migrations/*.ts'],
+  migrations: ['src/migrations/*.{ts,js}'],
   cli: {
     migrationsDir: 'src/migrations',
   },
