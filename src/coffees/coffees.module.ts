@@ -46,7 +46,7 @@ import { Connection } from 'typeorm';
           'Starbucks',
           'Dunkin Donuts',
         ]);
-        console.log('Async factory');
+        // console.log('Async factory');
         return coffeeBrands;
       },
     },

@@ -15,7 +15,7 @@ export class ApiKeyGuard implements CanActivate {
   canActivate(
     context: ExecutionContext,
   ): boolean | Promise<boolean> | Observable<boolean> {
-    console.log('Hi from ApiKeyGuard');
+    // console.log('Hi from ApiKeyGuard');
     const isPublic = this.reflector.get(IS_PUBLIC_KEY, context.getHandler()); // to access metadata
 
     if (isPublic) return true;

@@ -2,7 +2,7 @@ import { DataSource, DataSourceOptions } from 'typeorm';
 import typeOrmConfig from './typeorm.config';
 import * as dotenv from 'dotenv';
 
-dotenv.config(); // very very important!!
+dotenv.config({ path: '.env.production' }); // this is for migrations in Typeorm CLI, not Nest
 
 const dataSource = new DataSource(typeOrmConfig() as DataSourceOptions);
 

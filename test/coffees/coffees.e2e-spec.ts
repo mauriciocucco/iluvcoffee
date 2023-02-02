@@ -1,9 +1,12 @@
 import { HttpStatus, INestApplication, ValidationPipe } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { CoffeesModule } from '../../src/coffees/coffees.module';
 import { CreateCoffeeDto } from '../../src/coffees/dtos/create-coffee.dto';
 import * as request from 'supertest';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { DataSourceOptions } from 'typeorm';
+import appConfig from '../../src/config/app.config';
 
 describe('[Feature] Coffees - /coffees', () => {
   const coffee = {
@@ -20,15 +23,16 @@ describe('[Feature] Coffees - /coffees', () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [
         CoffeesModule,
-        TypeOrmModule.forRoot({
-          type: 'postgres',
-          host: 'localhost',
-          port: 5433,
-          username: 'postgres',
-          password: 'password',
-          database: 'postgres',
-          autoLoadEntities: true,
-          synchronize: true,
+        ConfigModule.forRoot({
+          envFilePath: `.env.${process.env.NODE_ENV}`,
+          isGlobal: true,
+          load: [appConfig],
+        }),
+        TypeOrmModule.forRootAsync({
+          inject: [ConfigService],
+          useFactory: (configService: ConfigService) => {
+            return configService.get<DataSourceOptions>('database');
+          },
         }),
       ],
     }).compile();
