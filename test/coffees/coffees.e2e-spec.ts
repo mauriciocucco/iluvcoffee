@@ -5,8 +5,9 @@ import { CreateCoffeeDto } from '../../src/coffees/dtos/create-coffee.dto';
 import * as request from 'supertest';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { DataSourceOptions } from 'typeorm';
+import { DataSource, DataSourceOptions } from 'typeorm';
 import appConfig from '../../src/config/app.config';
+import { Coffee } from '../../src/coffees/entities/coffee.entity';
 
 describe('[Feature] Coffees - /coffees', () => {
   const coffee = {
@@ -50,6 +51,14 @@ describe('[Feature] Coffees - /coffees', () => {
     );
 
     await app.init();
+  });
+
+  beforeEach(async () => {
+    const dataSource = app.get(DataSource);
+    const coffeeRepository = dataSource.getRepository(Coffee);
+
+    if (dataSource.hasMetadata(Coffee))
+      await coffeeRepository.query('TRUNCATE coffee RESTART IDENTITY CASCADE;');
   });
 
   it('Create [POST /])', () => {
