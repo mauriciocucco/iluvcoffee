@@ -13,8 +13,8 @@ const typeOrmConfig = () => ({
   migrationsTableName: 'migration',
   migrations: [
     process.env.NODE_ENV === 'production'
-      ? 'src/migrations/*.ts'
-      : __dirname + 'src/migrations/*.ts',
+      ? 'dist/migrations/*.js'
+      : __dirname + 'dist/migrations/*.js',
   ],
   cli: {
     migrationsDir: 'src/migrations',
