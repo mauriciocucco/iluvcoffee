@@ -16,6 +16,7 @@ const typeOrmConfig = () => ({
       ? 'dist/migrations/*.js'
       : __dirname + 'dist/migrations/*.js',
   ],
+  migrationsRun: process.env.MIGRATIONS_RUN || false,
   cli: {
     migrationsDir: 'src/migrations',
   },
