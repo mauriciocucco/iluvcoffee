@@ -11,11 +11,12 @@ const typeOrmConfig = () => ({
   synchronize: process.env.DB_SYNCHRONIZE || false,
   // autoLoadEntities: true,
   migrationsTableName: 'migration',
-  migrations: [
-    process.env.NODE_ENV === 'production'
-      ? 'dist/migrations/*.js'
-      : __dirname + 'dist/migrations/*.js',
-  ],
+  // migrations: [
+  //   process.env.NODE_ENV === 'production'
+  //     ? 'dist/migrations/*.js'
+  //     : __dirname + 'dist/migrations/*.js',
+  // ], // normal approach
+  migrations: [__dirname + '/../migrations/*.{ts,js}'], // with 'migrations/*' within exclude property in tsconfig.build.json
   migrationsRun: process.env.MIGRATIONS_RUN || false,
   cli: {
     migrationsDir: 'src/migrations',
